@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, WhatsApp } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageSquare } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -74,7 +73,7 @@ const Contact = () => {
                 <Facebook className="h-5 w-5" />
               </Button>
               <Button variant="outline" size="icon" className="rounded-full text-agroshop-green border-agroshop-green hover:bg-agroshop-green hover:text-white">
-                <WhatsApp className="h-5 w-5" />
+                <MessageSquare className="h-5 w-5" />
               </Button>
             </div>
           </div>

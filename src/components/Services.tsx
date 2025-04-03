@@ -1,5 +1,5 @@
 
-import { ArrowRight, Bath, Bacteria, AlarmClock, Stethoscope, HeartPulse, Scissors } from "lucide-react";
+import { ArrowRight, Bath, Bug, AlarmClock, Stethoscope, HeartPulse, Scissors } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -20,7 +20,7 @@ const serviceItems = [
     description: "Produtos de qualidade para alimentação, higiene, conforto e diversão do seu pet."
   },
   {
-    icon: <Bacteria className="h-8 w-8 text-agroshop-green" />,
+    icon: <Bug className="h-8 w-8 text-agroshop-green" />,
     title: "Vacinas",
     description: "Programa completo de vacinação para garantir a saúde e proteção do seu animal."
   },
