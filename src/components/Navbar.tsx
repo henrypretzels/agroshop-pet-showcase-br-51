@@ -1,0 +1,112 @@
+
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Phone, ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <header className="bg-agroshop-beige sticky top-0 z-50 shadow-sm">
+      <div className="container-custom flex items-center justify-between py-4">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="bg-agroshop-green rounded-full p-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-white"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="m9.5 13.5 2.5 2.5 2.5-2.5" />
+              <path d="M7 10h2.5" />
+              <path d="M14.5 10H17" />
+              <path d="M8 7h8" />
+            </svg>
+          </div>
+          <div>
+            <h1 className="font-bold text-2xl text-agroshop-green">AgroShop</h1>
+            <p className="text-xs text-agroshop-brown -mt-1">Pet Shop & Clínica</p>
+          </div>
+        </Link>
+        
+        <nav className="hidden md:flex items-center gap-8">
+          <Link to="/" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+            Início
+          </Link>
+          <Link to="/services" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+            Serviços
+          </Link>
+          <Link to="/products" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+            Produtos
+          </Link>
+          <Link to="/about" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+            Sobre
+          </Link>
+          <Link to="/contact" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+            Contato
+          </Link>
+        </nav>
+        
+        <div className="hidden md:flex items-center gap-4">
+          <Button variant="ghost" size="icon" className="rounded-full text-agroshop-green">
+            <Phone className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="rounded-full text-agroshop-green">
+            <ShoppingCart className="h-5 w-5" />
+          </Button>
+          <Button className="bg-agroshop-green hover:bg-agroshop-light-green text-white">
+            Agendar Visita
+          </Button>
+        </div>
+        
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden text-agroshop-green"
+          onClick={toggleMenu}
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </Button>
+      </div>
+      
+      {isMenuOpen && (
+        <div className="md:hidden bg-agroshop-beige">
+          <div className="container-custom py-4 flex flex-col gap-4">
+            <Link to="/" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+              Início
+            </Link>
+            <Link to="/services" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+              Serviços
+            </Link>
+            <Link to="/products" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+              Produtos
+            </Link>
+            <Link to="/about" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+              Sobre
+            </Link>
+            <Link to="/contact" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+              Contato
+            </Link>
+            <Button className="bg-agroshop-green hover:bg-agroshop-light-green text-white w-full mt-2">
+              Agendar Visita
+            </Button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;
