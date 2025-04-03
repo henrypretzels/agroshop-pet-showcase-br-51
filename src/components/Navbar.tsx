@@ -57,6 +57,9 @@ const Navbar = () => {
           <Link to="/contact" className="text-agroshop-brown hover:text-agroshop-green font-medium">
             Contato
           </Link>
+          <Link to="/admin" className="text-agroshop-green hover:text-agroshop-green font-medium">
+            Admin
+          </Link>
         </nav>
         
         <div className="hidden md:flex items-center gap-4">
@@ -98,6 +101,9 @@ const Navbar = () => {
             </Link>
             <Link to="/contact" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Contato
+            </Link>
+            <Link to="/admin" className="text-agroshop-green hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+              Admin
             </Link>
             <Button className="bg-agroshop-green hover:bg-agroshop-light-green text-white w-full mt-2">
               Agendar Visita
