@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, ShoppingCart } from "lucide-react";
+import { Menu, X, Phone, ShoppingCart, LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -69,9 +69,17 @@ const Navbar = () => {
           <Button variant="ghost" size="icon" className="rounded-full text-agroshop-green">
             <ShoppingCart className="h-5 w-5" />
           </Button>
-          <Button className="bg-agroshop-green hover:bg-agroshop-light-green text-white">
-            Agendar Visita
-          </Button>
+          <Link to="/login">
+            <Button variant="outline" className="border-agroshop-green text-agroshop-green hover:bg-agroshop-green hover:text-white">
+              <LogIn className="h-4 w-4 mr-2" />
+              Entrar
+            </Button>
+          </Link>
+          <Link to="/register">
+            <Button className="bg-agroshop-green hover:bg-agroshop-light-green text-white">
+              Cadastrar
+            </Button>
+          </Link>
         </div>
         
         <Button
@@ -105,9 +113,17 @@ const Navbar = () => {
             <Link to="/admin" className="text-agroshop-green hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Admin
             </Link>
-            <Button className="bg-agroshop-green hover:bg-agroshop-light-green text-white w-full mt-2">
-              Agendar Visita
-            </Button>
+            <Link to="/login">
+              <Button variant="outline" className="border-agroshop-green text-agroshop-green hover:bg-agroshop-green hover:text-white w-full mt-2">
+                <LogIn className="h-4 w-4 mr-2" />
+                Entrar
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button className="bg-agroshop-green hover:bg-agroshop-light-green text-white w-full mt-2">
+                Cadastrar
+              </Button>
+            </Link>
           </div>
         </div>
       )}
