@@ -42,21 +42,21 @@ const Navbar = () => {
         </Link>
         
         <nav className="hidden md:flex items-center gap-8">
-          <Link to="/" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+          <a href="#" className="text-agroshop-brown hover:text-agroshop-green font-medium">
             Início
-          </Link>
-          <Link to="/services" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+          </a>
+          <a href="#services" className="text-agroshop-brown hover:text-agroshop-green font-medium">
             Serviços
-          </Link>
-          <Link to="/products" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+          </a>
+          <a href="#products" className="text-agroshop-brown hover:text-agroshop-green font-medium">
             Produtos
-          </Link>
-          <Link to="/about" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+          </a>
+          <a href="#about" className="text-agroshop-brown hover:text-agroshop-green font-medium">
             Sobre
-          </Link>
-          <Link to="/contact" className="text-agroshop-brown hover:text-agroshop-green font-medium">
+          </a>
+          <a href="#contact" className="text-agroshop-brown hover:text-agroshop-green font-medium">
             Contato
-          </Link>
+          </a>
           <Link to="/admin" className="text-agroshop-green hover:text-agroshop-green font-medium">
             Admin
           </Link>
@@ -87,21 +87,21 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-agroshop-beige">
           <div className="container-custom py-4 flex flex-col gap-4">
-            <Link to="/" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+            <a href="#" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Início
-            </Link>
-            <Link to="/services" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+            </a>
+            <a href="#services" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Serviços
-            </Link>
-            <Link to="/products" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+            </a>
+            <a href="#products" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Produtos
-            </Link>
-            <Link to="/about" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+            </a>
+            <a href="#about" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Sobre
-            </Link>
-            <Link to="/contact" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
+            </a>
+            <a href="#contact" className="text-agroshop-brown hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Contato
-            </Link>
+            </a>
             <Link to="/admin" className="text-agroshop-green hover:text-agroshop-green font-medium py-2 border-b border-agroshop-cream">
               Admin
             </Link>
