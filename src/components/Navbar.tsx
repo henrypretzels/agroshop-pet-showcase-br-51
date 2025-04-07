@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, ShoppingCart, LogIn } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -63,12 +63,6 @@ const Navbar = () => {
         </nav>
         
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="rounded-full text-agroshop-green">
-            <Phone className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="rounded-full text-agroshop-green">
-            <ShoppingCart className="h-5 w-5" />
-          </Button>
           <Link to="/login">
             <Button variant="outline" className="border-agroshop-green text-agroshop-green hover:bg-agroshop-green hover:text-white">
               <LogIn className="h-4 w-4 mr-2" />
@@ -132,3 +126,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
