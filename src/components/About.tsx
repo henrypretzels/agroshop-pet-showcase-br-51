@@ -1,5 +1,4 @@
 
-import { Button } from "@/components/ui/button";
 import { ShieldCheck, Heart, ThumbsUp, Clock } from "lucide-react";
 
 const features = [
@@ -80,9 +79,7 @@ const About = () => {
               ))}
             </div>
             
-            <Button className="btn-primary">
-              Conheça nossa equipe
-            </Button>
+            {/* Button "Conheça nossa equipe" has been removed */}
           </div>
         </div>
       </div>
