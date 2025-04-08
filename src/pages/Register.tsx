@@ -11,8 +11,9 @@ import { ArrowRight } from "lucide-react";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -21,20 +22,10 @@ const Register = () => {
     e.preventDefault();
     
     // Validation checks
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !phone || !address || !password) {
       toast({
         title: "Formulário incompleto",
         description: "Por favor, preencha todos os campos.",
-        variant: "destructive",
-        duration: 3000,
-      });
-      return;
-    }
-    
-    if (password !== confirmPassword) {
-      toast({
-        title: "Senhas não coincidem",
-        description: "As senhas digitadas não são iguais.",
         variant: "destructive",
         duration: 3000,
       });
@@ -131,6 +122,34 @@ const Register = () => {
               </div>
               
               <div className="space-y-2">
+                <Label htmlFor="phone" className="text-agroshop-brown">
+                  Telefone
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="(00) 00000-0000"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="border-agroshop-cream focus-visible:ring-agroshop-green"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="address" className="text-agroshop-brown">
+                  Endereço
+                </Label>
+                <Input
+                  id="address"
+                  type="text"
+                  placeholder="Seu endereço completo"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className="border-agroshop-cream focus-visible:ring-agroshop-green"
+                />
+              </div>
+              
+              <div className="space-y-2">
                 <Label htmlFor="password" className="text-agroshop-brown">
                   Senha
                 </Label>
@@ -140,20 +159,6 @@ const Register = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="border-agroshop-cream focus-visible:ring-agroshop-green"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="confirm-password" className="text-agroshop-brown">
-                  Confirmar senha
-                </Label>
-                <Input
-                  id="confirm-password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
                   className="border-agroshop-cream focus-visible:ring-agroshop-green"
                 />
               </div>
