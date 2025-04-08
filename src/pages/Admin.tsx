@@ -1,10 +1,12 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Users, Package, Calendar } from "lucide-react";
+import { PlusCircle, Users, Package, Calendar, ShoppingBag, Dog, Cat, Bird, Fish, Rabbit, Scissors, Bath, Syringe, Stethoscope, Pills } from "lucide-react";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 
 const Admin = () => {
   // Mock data for demonstration
@@ -13,6 +15,27 @@ const Admin = () => {
     { id: 2, petName: "Luna", owner: "Maria Oliveira", service: "Banho e Tosa", date: "11/04/2025", status: "Pendente" },
     { id: 3, petName: "Thor", owner: "Carlos Santos", service: "Vacina", date: "12/04/2025", status: "Confirmado" },
     { id: 4, petName: "Mia", owner: "Ana Costa", service: "Exame", date: "13/04/2025", status: "Pendente" },
+  ];
+
+  // State to track which primary icon is selected
+  const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
+
+  // Primary menu icons with their labels
+  const primaryIcons = [
+    { icon: Dog, label: "Cachorro" },
+    { icon: Cat, label: "Gato" },
+    { icon: Bird, label: "Pássaro" },
+    { icon: Fish, label: "Peixe" },
+    { icon: Rabbit, label: "Coelho" },
+  ];
+
+  // Secondary menu icons with their labels
+  const secondaryIcons = [
+    { icon: Bath, label: "Banho" },
+    { icon: Scissors, label: "Tosa" },
+    { icon: Stethoscope, label: "Consulta" },
+    { icon: Syringe, label: "Vacina" },
+    { icon: Pills, label: "Medicação" },
   ];
 
   return (
@@ -60,10 +83,51 @@ const Admin = () => {
         <div className="flex-1 p-8">
           <div className="mb-8 flex justify-between items-center">
             <h1 className="text-2xl font-bold text-agroshop-brown">Dashboard</h1>
-            <Button className="bg-agroshop-green hover:bg-agroshop-light-green">
-              <PlusCircle className="mr-2 h-4 w-4" />
-              Novo Agendamento
-            </Button>
+            
+            {/* Button with Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button className="bg-agroshop-green hover:bg-agroshop-light-green">
+                  <PlusCircle className="mr-2 h-4 w-4" />
+                  Novo Agendamento
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white p-2" align="end">
+                {primaryIcons.map((item, index) => (
+                  <Popover key={index}>
+                    <PopoverTrigger asChild>
+                      <DropdownMenuItem 
+                        className="flex items-center p-2 cursor-pointer hover:bg-agroshop-cream rounded"
+                        onSelect={(e) => {
+                          e.preventDefault(); // Prevent the dropdown from closing
+                          setSelectedIcon(item.label);
+                        }}
+                      >
+                        <item.icon className="mr-2 h-5 w-5" />
+                        <span>{item.label}</span>
+                      </DropdownMenuItem>
+                    </PopoverTrigger>
+                    <PopoverContent side="right" className="bg-white p-2 w-auto">
+                      <div className="flex flex-col gap-2">
+                        {secondaryIcons.map((secItem, secIndex) => (
+                          <div 
+                            key={secIndex} 
+                            className="flex items-center p-2 cursor-pointer hover:bg-agroshop-cream rounded"
+                            onClick={() => {
+                              console.log(`Selected ${item.label} - ${secItem.label}`);
+                              // Here you can add your logic for what happens when a secondary icon is clicked
+                            }}
+                          >
+                            <secItem.icon className="mr-2 h-5 w-5" />
+                            <span>{secItem.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
