@@ -1,9 +1,8 @@
-
 import React, { useState } from "react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Users, Package, Calendar, ShoppingBag, Dog, Cat, Bird, Fish, Rabbit, Scissors, Bath, Syringe, Stethoscope, Pills } from "lucide-react";
+import { PlusCircle, Users, Package, Calendar, ShoppingBag, Dog, Cat, Bird, Fish, Rabbit, Scissors, Bath, Syringe, Stethoscope, Pill } from "lucide-react";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -35,7 +34,7 @@ const Admin = () => {
     { icon: Scissors, label: "Tosa" },
     { icon: Stethoscope, label: "Consulta" },
     { icon: Syringe, label: "Vacina" },
-    { icon: Pills, label: "Medicação" },
+    { icon: Pill, label: "Medicação" },
   ];
 
   return (
