@@ -79,7 +79,7 @@ const Contact = () => {
         <div className="mt-12">
           <div className="rounded-xl overflow-hidden shadow-lg h-[400px]">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0711780486207!2d-46.6563666239923!3d-23.565635861242846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1682618876392!5m2!1spt-BR!2sbr" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.6939608339167!2d-54.88063982326927!3d-29.17809397968597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDEwJzQwLjUiUyA1NMKwNTInNDIuNCJX!5e0!3m2!1spt-BR!2sbr!4v1682618876392!5m2!1spt-BR!2sbr" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
