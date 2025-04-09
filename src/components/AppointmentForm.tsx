@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +16,14 @@ import { ptBR } from "date-fns/locale";
 import { Calendar as CalendarIcon, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ClientSelector from "./ClientSelector";
+
+// Mock data for clients (duplicated from ClientSelector to resolve the reference error)
+const mockClients = [
+  { id: 1, name: "João Silva", email: "joao@exemplo.com", phone: "(11) 98765-4321", pets: ["Max (Cachorro)"] },
+  { id: 2, name: "Maria Oliveira", email: "maria@exemplo.com", phone: "(11) 91234-5678", pets: ["Luna (Gato)", "Thor (Cachorro)"] },
+  { id: 3, name: "Carlos Santos", email: "carlos@exemplo.com", phone: "(11) 92345-6789", pets: ["Rex (Cachorro)"] },
+  { id: 4, name: "Ana Costa", email: "ana@exemplo.com", phone: "(11) 93456-7890", pets: ["Mia (Gato)"] },
+];
 
 // Mock data for pet options
 const petOptions = [
