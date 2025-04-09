@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Users, Package, Calendar, ShoppingBag, Dog, Cat, Bird, Fish, Rabbit, Scissors, Bath, Syringe, Stethoscope, Pill } from "lucide-react";
+import { PlusCircle, Users, Package, Calendar, ShoppingBag, Dog, Cat, Bird, Fish, Rabbit, Scissors, Bath, Syringe, Stethoscope, Pill, Sparkles } from "lucide-react";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import ProductRegistrationForm from "@/components/ProductRegistrationForm";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import ServiceRegistrationForm from "@/components/ServiceRegistrationForm";
 
 const Admin = () => {
   // Mock data for demonstration
@@ -81,6 +82,19 @@ const Admin = () => {
               <NavigationMenuItem className="w-full">
                 <NavigationMenuLink 
                   className={`flex items-center gap-2 p-3 rounded-md w-full ${
+                    activeSection === "services" 
+                      ? "bg-agroshop-cream text-agroshop-brown font-medium" 
+                      : "hover:bg-agroshop-cream text-agroshop-brown"
+                  }`}
+                  onClick={() => setActiveSection("services")}
+                >
+                  <Sparkles size={18} />
+                  <span>Serviços</span>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem className="w-full">
+                <NavigationMenuLink 
+                  className={`flex items-center gap-2 p-3 rounded-md w-full ${
                     activeSection === "appointments" 
                       ? "bg-agroshop-cream text-agroshop-brown font-medium" 
                       : "hover:bg-agroshop-cream text-agroshop-brown"
@@ -101,6 +115,7 @@ const Admin = () => {
             <h1 className="text-2xl font-bold text-agroshop-brown">
               {activeSection === "clients" ? "Clientes" : 
                activeSection === "products" ? "Produtos" : 
+               activeSection === "services" ? "Serviços" : 
                activeSection === "appointments" ? "Agendamentos" : "Dashboard"}
             </h1>
             
@@ -158,6 +173,16 @@ const Admin = () => {
                   </Button>
                 </DialogTrigger>
                 <ProductRegistrationForm />
+              </Dialog>
+            ) : activeSection === "services" ? (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-agroshop-green hover:bg-agroshop-light-green">
+                    <PlusCircle className="mr-2 h-4 w-4" />
+                    Adicionar Serviço
+                  </Button>
+                </DialogTrigger>
+                <ServiceRegistrationForm />
               </Dialog>
             ) : null}
           </div>
@@ -265,6 +290,35 @@ const Admin = () => {
                     <TableRow>
                       <TableCell colSpan={6} className="text-center py-8 text-gray-500">
                         Nenhum produto cadastrado. Clique em "Adicionar Produto" para começar.
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          )}
+          
+          {activeSection === "services" && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Lista de Serviços</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-gray-500">
+                  Use o botão "Adicionar Serviço" para cadastrar um novo serviço.
+                </p>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Descrição</TableHead>
+                      <TableHead>Categoria</TableHead>
+                      <TableHead>Variáveis</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell colSpan={3} className="text-center py-8 text-gray-500">
+                        Nenhum serviço cadastrado. Clique em "Adicionar Serviço" para começar.
                       </TableCell>
                     </TableRow>
                   </TableBody>
