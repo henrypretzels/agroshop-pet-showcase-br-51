@@ -11,6 +11,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import ServiceRegistrationForm from "@/components/ServiceRegistrationForm";
 import ClientRegistrationForm from "@/components/ClientRegistrationForm";
 import AppointmentForm from "@/components/AppointmentForm";
+import ClientSelector from "@/components/ClientSelector";
 
 const Admin = () => {
   // Mock data for demonstration
@@ -26,6 +27,9 @@ const Admin = () => {
 
   // State to track which section is active
   const [activeSection, setActiveSection] = useState<string>("dashboard");
+  
+  // State to track selected client
+  const [selectedClientId, setSelectedClientId] = useState<number | null>(null);
 
   // Primary menu icons with their labels
   const primaryIcons = [
@@ -44,6 +48,12 @@ const Admin = () => {
     { icon: Syringe, label: "Vacina" },
     { icon: Pill, label: "Medicação" },
   ];
+
+  // Handle client selection
+  const handleSelectClient = (clientId: number) => {
+    setSelectedClientId(clientId);
+    console.log("Selected client ID:", clientId);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -358,26 +368,9 @@ const Admin = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-gray-500">
-                  Use o botão "Cadastrar Cliente" para adicionar um novo cliente.
+                  Gerencie os clientes e seus pets. Utilize a busca para encontrar clientes específicos.
                 </p>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Nome</TableHead>
-                      <TableHead>Email</TableHead>
-                      <TableHead>Telefone</TableHead>
-                      <TableHead>Pets</TableHead>
-                      <TableHead className="text-right">Ações</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell colSpan={5} className="text-center py-8 text-gray-500">
-                        Nenhum cliente cadastrado. Clique em "Cadastrar Cliente" para começar.
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                <ClientSelector onSelectClient={handleSelectClient} />
               </CardContent>
             </Card>
           )}

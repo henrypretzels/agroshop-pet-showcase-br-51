@@ -10,7 +10,7 @@ import ClientHistory from "./ClientHistory";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 // Mock data for clients
-const mockClients = [
+export const mockClients = [
   { id: 1, name: "João Silva", email: "joao@exemplo.com", phone: "(11) 98765-4321", pets: ["Max (Cachorro)"] },
   { id: 2, name: "Maria Oliveira", email: "maria@exemplo.com", phone: "(11) 91234-5678", pets: ["Luna (Gato)", "Thor (Cachorro)"] },
   { id: 3, name: "Carlos Santos", email: "carlos@exemplo.com", phone: "(11) 92345-6789", pets: ["Rex (Cachorro)"] },
