@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Users, Package, Calendar, ShoppingBag, Dog, Cat, Bird, Fish, Rabbit, Scissors, Bath, Syringe, Stethoscope, Pill, Sparkles } from "lucide-react";
+import { PlusCircle, Users, Package, Calendar, ShoppingBag, Dog, Cat, Bird, Fish, Rabbit, Scissors, Bath, Syringe, Stethoscope, Pill, Sparkles, UserPlus } from "lucide-react";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import ProductRegistrationForm from "@/components/ProductRegistrationForm";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import ServiceRegistrationForm from "@/components/ServiceRegistrationForm";
+import ClientRegistrationForm from "@/components/ClientRegistrationForm";
+import AppointmentForm from "@/components/AppointmentForm";
 
 const Admin = () => {
   // Mock data for demonstration
@@ -121,49 +123,61 @@ const Admin = () => {
             
             {/* Conditional Button based on active section */}
             {activeSection === "appointments" ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button className="bg-agroshop-green hover:bg-agroshop-light-green">
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    Novo Agendamento
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white p-2" align="end">
-                  {primaryIcons.map((item, index) => (
-                    <Popover key={index}>
-                      <PopoverTrigger asChild>
-                        <DropdownMenuItem 
-                          className="flex items-center p-2 cursor-pointer hover:bg-agroshop-cream rounded"
-                          onSelect={(e) => {
-                            e.preventDefault(); // Prevent the dropdown from closing
-                            setSelectedIcon(item.label);
-                          }}
-                        >
-                          <item.icon className="mr-2 h-5 w-5" />
-                          <span>{item.label}</span>
-                        </DropdownMenuItem>
-                      </PopoverTrigger>
-                      <PopoverContent side="right" className="bg-white p-2 w-auto">
-                        <div className="flex flex-col gap-2">
-                          {secondaryIcons.map((secItem, secIndex) => (
-                            <div 
-                              key={secIndex} 
-                              className="flex items-center p-2 cursor-pointer hover:bg-agroshop-cream rounded"
-                              onClick={() => {
-                                console.log(`Selected ${item.label} - ${secItem.label}`);
-                                // Here you can add your logic for what happens when a secondary icon is clicked
-                              }}
-                            >
-                              <secItem.icon className="mr-2 h-5 w-5" />
-                              <span>{secItem.label}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <div className="flex space-x-2">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="bg-agroshop-green hover:bg-agroshop-light-green">
+                      <UserPlus className="mr-2 h-4 w-4" />
+                      Cadastrar Cliente
+                    </Button>
+                  </DialogTrigger>
+                  <ClientRegistrationForm />
+                </Dialog>
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button className="bg-agroshop-green hover:bg-agroshop-light-green">
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      Novo Agendamento
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white p-2" align="end">
+                    {primaryIcons.map((item, index) => (
+                      <Popover key={index}>
+                        <PopoverTrigger asChild>
+                          <DropdownMenuItem 
+                            className="flex items-center p-2 cursor-pointer hover:bg-agroshop-cream rounded"
+                            onSelect={(e) => {
+                              e.preventDefault(); // Prevent the dropdown from closing
+                              setSelectedIcon(item.label);
+                            }}
+                          >
+                            <item.icon className="mr-2 h-5 w-5" />
+                            <span>{item.label}</span>
+                          </DropdownMenuItem>
+                        </PopoverTrigger>
+                        <PopoverContent side="right" className="bg-white p-2 w-auto">
+                          <div className="flex flex-col gap-2">
+                            {secondaryIcons.map((secItem, secIndex) => (
+                              <div 
+                                key={secIndex} 
+                                className="flex items-center p-2 cursor-pointer hover:bg-agroshop-cream rounded"
+                                onClick={() => {
+                                  console.log(`Selected ${item.label} - ${secItem.label}`);
+                                  // Here you can add your logic for what happens when a secondary icon is clicked
+                                }}
+                              >
+                                <secItem.icon className="mr-2 h-5 w-5" />
+                                <span>{secItem.label}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             ) : activeSection === "products" ? (
               <Dialog>
                 <DialogTrigger asChild>
@@ -183,6 +197,16 @@ const Admin = () => {
                   </Button>
                 </DialogTrigger>
                 <ServiceRegistrationForm />
+              </Dialog>
+            ) : activeSection === "clients" ? (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-agroshop-green hover:bg-agroshop-light-green">
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    Cadastrar Cliente
+                  </Button>
+                </DialogTrigger>
+                <ClientRegistrationForm />
               </Dialog>
             ) : null}
           </div>
@@ -327,7 +351,40 @@ const Admin = () => {
             </Card>
           )}
           
-          {/* Other sections can be added here */}
+          {activeSection === "clients" && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Lista de Clientes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-gray-500">
+                  Use o botão "Cadastrar Cliente" para adicionar um novo cliente.
+                </p>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Nome</TableHead>
+                      <TableHead>Email</TableHead>
+                      <TableHead>Telefone</TableHead>
+                      <TableHead>Pets</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell colSpan={5} className="text-center py-8 text-gray-500">
+                        Nenhum cliente cadastrado. Clique em "Cadastrar Cliente" para começar.
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          )}
+          
+          {activeSection === "appointments" && (
+            <AppointmentForm />
+          )}
         </div>
       </div>
     </div>
