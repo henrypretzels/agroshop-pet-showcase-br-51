@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, UserPlus } from "lucide-react";
+import { Search, UserPlus, Edit, Trash2, History } from "lucide-react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import ClientRegistrationForm from "./ClientRegistrationForm";
 import ClientHistory from "./ClientHistory";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "@/components/ui/context-menu";
+import { toast } from "sonner";
 
 // Mock data for clients
 export const mockClients = [
@@ -24,9 +26,10 @@ interface ClientSelectorProps {
 const ClientSelector = ({ onSelectClient }: ClientSelectorProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedClientId, setSelectedClientId] = useState<number | null>(null);
+  const [clients, setClients] = useState(mockClients);
   
   // Filter clients based on search term
-  const filteredClients = mockClients.filter(client => 
+  const filteredClients = clients.filter(client => 
     client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     client.phone.includes(searchTerm)
@@ -35,6 +38,19 @@ const ClientSelector = ({ onSelectClient }: ClientSelectorProps) => {
   const handleSelectClient = (clientId: number) => {
     setSelectedClientId(clientId);
     onSelectClient(clientId);
+  };
+
+  const handleEditClient = (clientId: number) => {
+    // In a real app, this would open a form with the client data
+    toast.info(`Editando cliente ${clientId}`);
+    // For demonstration purposes only
+    console.log("Edit client:", clientId);
+  };
+
+  const handleDeleteClient = (clientId: number) => {
+    // In a real app, this would confirm before deleting
+    setClients(clients.filter(client => client.id !== clientId));
+    toast.success("Cliente removido com sucesso");
   };
 
   return (
@@ -76,37 +92,80 @@ const ClientSelector = ({ onSelectClient }: ClientSelectorProps) => {
           <TableBody>
             {filteredClients.length > 0 ? (
               filteredClients.map((client) => (
-                <TableRow key={client.id}>
-                  <TableCell>{client.name}</TableCell>
-                  <TableCell>{client.email}</TableCell>
-                  <TableCell>{client.phone}</TableCell>
-                  <TableCell>{client.pets.join(", ")}</TableCell>
-                  <TableCell className="text-right">
-                    <Sheet>
-                      <SheetTrigger asChild>
-                        <Button variant="outline" size="sm" className="mr-2">
-                          Histórico
+                <ContextMenuTrigger key={client.id} asChild>
+                  <TableRow>
+                    <TableCell>{client.name}</TableCell>
+                    <TableCell>{client.email}</TableCell>
+                    <TableCell>{client.phone}</TableCell>
+                    <TableCell>{client.pets.join(", ")}</TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex justify-end gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          onClick={() => handleEditClient(client.id)}
+                          className="h-8 w-8"
+                        >
+                          <Edit className="h-4 w-4" />
                         </Button>
-                      </SheetTrigger>
-                      <SheetContent side="right" className="w-[600px] sm:w-[600px]">
-                        <SheetHeader>
-                          <SheetTitle>Histórico - {client.name}</SheetTitle>
-                        </SheetHeader>
-                        <div className="mt-6">
-                          <ClientHistory clientId={client.id} />
-                        </div>
-                      </SheetContent>
-                    </Sheet>
-                    
-                    <Button 
-                      size="sm" 
-                      onClick={() => handleSelectClient(client.id)}
-                      className="bg-agroshop-green hover:bg-agroshop-light-green"
-                    >
-                      Selecionar
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                        
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          onClick={() => handleDeleteClient(client.id)}
+                          className="h-8 w-8 text-red-500 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                        
+                        <Sheet>
+                          <SheetTrigger asChild>
+                            <Button 
+                              variant="outline" 
+                              size="icon"
+                              className="h-8 w-8"
+                            >
+                              <History className="h-4 w-4" />
+                            </Button>
+                          </SheetTrigger>
+                          <SheetContent side="right" className="w-[600px] sm:w-[600px]">
+                            <SheetHeader>
+                              <SheetTitle>Histórico - {client.name}</SheetTitle>
+                            </SheetHeader>
+                            <div className="mt-6">
+                              <ClientHistory clientId={client.id} />
+                            </div>
+                          </SheetContent>
+                        </Sheet>
+                        
+                        <Button 
+                          size="sm" 
+                          onClick={() => handleSelectClient(client.id)}
+                          className="bg-agroshop-green hover:bg-agroshop-light-green"
+                        >
+                          Selecionar
+                        </Button>
+                      </div>
+                      
+                      <ContextMenu>
+                        <ContextMenuContent>
+                          <ContextMenuItem onClick={() => handleSelectClient(client.id)}>
+                            Selecionar
+                          </ContextMenuItem>
+                          <ContextMenuItem onClick={() => handleEditClient(client.id)}>
+                            Alterar
+                          </ContextMenuItem>
+                          <ContextMenuItem 
+                            onClick={() => handleDeleteClient(client.id)}
+                            className="text-red-500 focus:text-red-500"
+                          >
+                            Excluir
+                          </ContextMenuItem>
+                        </ContextMenuContent>
+                      </ContextMenu>
+                    </TableCell>
+                  </TableRow>
+                </ContextMenuTrigger>
               ))
             ) : (
               <TableRow>
