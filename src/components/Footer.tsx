@@ -52,24 +52,24 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-white/80 hover:text-white transition-colors">
+                <a href="#services" className="text-white/80 hover:text-white transition-colors">
                   Serviços
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/products" className="text-white/80 hover:text-white transition-colors">
+                <a href="#products" className="text-white/80 hover:text-white transition-colors">
                   Produtos
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/about" className="text-white/80 hover:text-white transition-colors">
+                <a href="#about" className="text-white/80 hover:text-white transition-colors">
                   Sobre nós
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
+                <a href="#contact" className="text-white/80 hover:text-white transition-colors">
                   Contato
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -78,29 +78,29 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Serviços</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/services" className="text-white/80 hover:text-white transition-colors">
+                <a href="#services" className="text-white/80 hover:text-white transition-colors">
                   Consulta Veterinária
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/services" className="text-white/80 hover:text-white transition-colors">
+                <a href="#services" className="text-white/80 hover:text-white transition-colors">
                   Banho e Tosa
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/services" className="text-white/80 hover:text-white transition-colors">
+                <a href="#services" className="text-white/80 hover:text-white transition-colors">
                   Vacinação
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/services" className="text-white/80 hover:text-white transition-colors">
+                <a href="#services" className="text-white/80 hover:text-white transition-colors">
                   Exames
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/services" className="text-white/80 hover:text-white transition-colors">
+                <a href="#services" className="text-white/80 hover:text-white transition-colors">
                   Hospedagem
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
