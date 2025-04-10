@@ -92,80 +92,79 @@ const ClientSelector = ({ onSelectClient }: ClientSelectorProps) => {
           <TableBody>
             {filteredClients.length > 0 ? (
               filteredClients.map((client) => (
-                <ContextMenuTrigger key={client.id} asChild>
-                  <TableRow>
-                    <TableCell>{client.name}</TableCell>
-                    <TableCell>{client.email}</TableCell>
-                    <TableCell>{client.phone}</TableCell>
-                    <TableCell>{client.pets.join(", ")}</TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
-                        <Button 
-                          variant="outline" 
-                          size="icon"
-                          onClick={() => handleEditClient(client.id)}
-                          className="h-8 w-8"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        
-                        <Button 
-                          variant="outline" 
-                          size="icon"
-                          onClick={() => handleDeleteClient(client.id)}
-                          className="h-8 w-8 text-red-500 hover:text-red-700"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                        
-                        <Sheet>
-                          <SheetTrigger asChild>
-                            <Button 
-                              variant="outline" 
-                              size="icon"
-                              className="h-8 w-8"
-                            >
-                              <History className="h-4 w-4" />
-                            </Button>
-                          </SheetTrigger>
-                          <SheetContent side="right" className="w-[600px] sm:w-[600px]">
-                            <SheetHeader>
-                              <SheetTitle>Histórico - {client.name}</SheetTitle>
-                            </SheetHeader>
-                            <div className="mt-6">
-                              <ClientHistory clientId={client.id} />
-                            </div>
-                          </SheetContent>
-                        </Sheet>
-                        
-                        <Button 
-                          size="sm" 
-                          onClick={() => handleSelectClient(client.id)}
-                          className="bg-agroshop-green hover:bg-agroshop-light-green"
-                        >
-                          Selecionar
-                        </Button>
-                      </div>
-                      
-                      <ContextMenu>
-                        <ContextMenuContent>
-                          <ContextMenuItem onClick={() => handleSelectClient(client.id)}>
-                            Selecionar
-                          </ContextMenuItem>
-                          <ContextMenuItem onClick={() => handleEditClient(client.id)}>
-                            Alterar
-                          </ContextMenuItem>
-                          <ContextMenuItem 
-                            onClick={() => handleDeleteClient(client.id)}
-                            className="text-red-500 focus:text-red-500"
+                <ContextMenu key={client.id}>
+                  <ContextMenuTrigger asChild>
+                    <TableRow>
+                      <TableCell>{client.name}</TableCell>
+                      <TableCell>{client.email}</TableCell>
+                      <TableCell>{client.phone}</TableCell>
+                      <TableCell>{client.pets.join(", ")}</TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          <Button 
+                            variant="outline" 
+                            size="icon"
+                            onClick={() => handleEditClient(client.id)}
+                            className="h-8 w-8"
                           >
-                            Excluir
-                          </ContextMenuItem>
-                        </ContextMenuContent>
-                      </ContextMenu>
-                    </TableCell>
-                  </TableRow>
-                </ContextMenuTrigger>
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          
+                          <Button 
+                            variant="outline" 
+                            size="icon"
+                            onClick={() => handleDeleteClient(client.id)}
+                            className="h-8 w-8 text-red-500 hover:text-red-700"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                          
+                          <Sheet>
+                            <SheetTrigger asChild>
+                              <Button 
+                                variant="outline" 
+                                size="icon"
+                                className="h-8 w-8"
+                              >
+                                <History className="h-4 w-4" />
+                              </Button>
+                            </SheetTrigger>
+                            <SheetContent side="right" className="w-[600px] sm:w-[600px]">
+                              <SheetHeader>
+                                <SheetTitle>Histórico - {client.name}</SheetTitle>
+                              </SheetHeader>
+                              <div className="mt-6">
+                                <ClientHistory clientId={client.id} />
+                              </div>
+                            </SheetContent>
+                          </Sheet>
+                          
+                          <Button 
+                            size="sm" 
+                            onClick={() => handleSelectClient(client.id)}
+                            className="bg-agroshop-green hover:bg-agroshop-light-green"
+                          >
+                            Selecionar
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  </ContextMenuTrigger>
+                  <ContextMenuContent>
+                    <ContextMenuItem onClick={() => handleSelectClient(client.id)}>
+                      Selecionar
+                    </ContextMenuItem>
+                    <ContextMenuItem onClick={() => handleEditClient(client.id)}>
+                      Alterar
+                    </ContextMenuItem>
+                    <ContextMenuItem 
+                      onClick={() => handleDeleteClient(client.id)}
+                      className="text-red-500 focus:text-red-500"
+                    >
+                      Excluir
+                    </ContextMenuItem>
+                  </ContextMenuContent>
+                </ContextMenu>
               ))
             ) : (
               <TableRow>
